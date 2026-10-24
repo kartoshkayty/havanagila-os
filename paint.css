@@ -1,0 +1,79 @@
+/* Paint owns its body only; shell positioning, maximize and resizing stay with OS. */
+#paint { width: min(900px, calc(100% - 24px)); height: 690px; }
+#paint .window-body { padding: 0; background: #f4f8ff; overflow: auto; }
+#paint .paint-app { --paint-blue: #214fde; --paint-ink: #153262; --paint-line: #dbe5f3; min-width: 0; min-height: 100%; display: flex; flex-direction: column; color: var(--paint-ink); font-size: 12px; }
+#paint .paint-app *, #paint .paint-app *::before, #paint .paint-app *::after { box-sizing: border-box; }
+#paint .paint-app button { font: inherit; color: inherit; cursor: pointer; }
+#paint .paint-app button:disabled { opacity: .38; cursor: default; }
+#paint .paint-app button:focus-visible, #paint .paint-app input:focus-visible, #paint .paint-app canvas:focus-visible { outline: 2px solid #416be5; outline-offset: 3px; }
+#paint .paint-icon { display: block; width: 19px; height: 19px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.65; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
+#paint .paint-ribbon { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px 12px; background: #fff; border-bottom: 1px solid var(--paint-line); }
+#paint .paint-heading { display: flex; flex-direction: column; gap: 4px; }
+#paint .paint-eyebrow { color: #6b82a7; font-size: 9px; letter-spacing: 1.8px; font-weight: 700; }
+#paint .paint-heading strong { font-size: 14px; font-weight: 600; }
+#paint .paint-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 5px; }
+#paint .paint-actions button { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-width: 34px; min-height: 34px; padding: 7px 9px; border: 1px solid var(--paint-line); border-radius: 7px; background: #fff; white-space: nowrap; }
+#paint .paint-actions button:not(:disabled):hover { background: #edf3ff; border-color: #acc2f0; }
+#paint .paint-actions .paint-save { background: var(--paint-blue); border-color: var(--paint-blue); color: #fff; margin-left: 3px; }
+#paint .paint-actions .paint-save:not(:disabled):hover { background: #1842c1; border-color: #1842c1; }
+#paint .paint-settings { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; padding: 11px 16px; background: #f8faff; border-bottom: 1px solid var(--paint-line); }
+#paint .paint-color-group { display: flex; align-items: center; gap: 8px; }
+#paint .paint-label { color: #526c92; font-size: 11px; }
+#paint .paint-palette { display: grid; grid-template-columns: repeat(6, 19px); gap: 4px; }
+#paint .paint-swatch { width: 19px; height: 19px; min-width: 0; padding: 0; border: 1px solid #15326224; border-radius: 5px; background: var(--paint-swatch); position: relative; }
+#paint .paint-swatch[aria-pressed="true"] { outline: 2px solid #214fde; outline-offset: 2px; z-index: 1; }
+#paint .paint-custom { display: flex; align-items: center; flex-direction: column; gap: 3px; font-size: 9px; color: #526c92; cursor: pointer; }
+#paint .paint-custom input { display: block; width: 27px; height: 27px; padding: 2px; border: 1px solid #c9d6eb; border-radius: 6px; background: white; cursor: pointer; }
+#paint .paint-setting { display: flex; flex-direction: column; gap: 6px; width: 140px; font-size: 11px; color: #526c92; }
+#paint .paint-setting > span { display: flex; justify-content: space-between; gap: 8px; white-space: nowrap; }
+#paint .paint-setting output { color: #153262; font-variant-numeric: tabular-nums; }
+#paint .paint-setting input { width: 100%; height: 15px; margin: 0; accent-color: #214fde; cursor: pointer; }
+#paint .paint-setting input:disabled { opacity: .35; cursor: default; }
+#paint .paint-fill { display: flex; align-items: center; gap: 5px; font-size: 11px; white-space: nowrap; }
+#paint .paint-fill input { accent-color: #214fde; width: 15px; height: 15px; margin: 0; }
+#paint .paint-fill:has(input:disabled) { opacity: .45; }
+#paint .paint-workspace { display: flex; flex: 1; align-items: flex-start; gap: 13px; min-width: 0; padding: 16px; }
+#paint .paint-tools { display: flex; flex-direction: column; gap: 5px; flex: 0 0 132px; }
+#paint .paint-tool { display: flex; align-items: center; gap: 8px; width: 100%; min-height: 39px; padding: 8px; border: 1px solid transparent; border-radius: 8px; background: transparent; text-align: left; }
+#paint .paint-tool > span { flex: 1; min-width: 0; font-size: 11px; line-height: 1.3; }
+#paint .paint-tool kbd { font: inherit; font-size: 9px; opacity: .45; }
+#paint .paint-tool:not(:disabled):hover { background: #e7effe; }
+#paint .paint-tool[aria-pressed="true"] { border-color: #b9cdfa; background: #e4edff; color: #1b48c9; box-shadow: 0 2px 5px #214fde08; }
+#paint .paint-tool[data-paint-tool="star"] { min-height: 51px; border-top-color: #d3dff3; margin-top: 5px; }
+#paint .paint-tool[data-paint-tool="star"] .paint-icon { color: #214fde; }
+#paint .paint-paper-area { flex: 1; min-width: 0; align-self: center; }
+#paint .paint-paper { background: #fff; border: 1px solid #d2def0; box-shadow: 0 5px 20px #294b8420, 0 1px 3px #294b8410; }
+#paint .paint-paper canvas { display: block; width: 100%; height: auto; aspect-ratio: 8 / 5; background: #fff; cursor: crosshair; touch-action: none; user-select: none; -webkit-user-select: none; }
+#paint .paint-paper canvas[data-tool="eraser"] { cursor: cell; }
+#paint .paint-paper-caption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 5px; padding-top: 9px; font-size: 10px; color: #526c92; font-variant-numeric: tabular-nums; }
+#paint .paint-status { display: flex; align-items: center; gap: 7px; padding: 10px 16px; border-top: 1px solid var(--paint-line); background: #fafdff; font-size: 10px; line-height: 1.5; color: #526c92; }
+#paint .paint-status-dot { width: 5px; height: 5px; background: #537cdb; border-radius: 50%; flex-shrink: 0; }
+#paint .paint-status #paint-hint { flex: 1; }
+#paint .paint-session { margin-left: auto; white-space: nowrap; color: #7589a8; }
+/* Container queries respond to shell resizing, not only viewport changes. */
+#paint .window-body { container-type: inline-size; container-name: paint-body; }
+@container paint-body (max-width: 640px) {
+  #paint .paint-ribbon { padding: 12px; gap: 10px; }
+  #paint .paint-heading { display: none; }
+  #paint .paint-settings { padding: 11px 12px; gap: 12px 16px; }
+  #paint .paint-workspace { flex-direction: column; padding: 12px; gap: 12px; }
+  #paint .paint-tools { flex: none; width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5px; }
+  #paint .paint-tool { min-height: 40px; padding: 6px; gap: 5px; background: #edf3fc; }
+  #paint .paint-tool kbd { display: none; }
+  #paint .paint-tool[data-paint-tool="star"] { margin-top: 0; min-height: 40px; }
+  #paint .paint-paper-area { width: 100%; }
+  #paint .paint-status { padding: 9px 12px; }
+  #paint .paint-session { display: none; }
+}
+@container paint-body (max-width: 370px) {
+  #paint .paint-ribbon { padding: 10px; }
+  #paint .paint-actions { gap: 4px; }
+  #paint .paint-actions button { min-width: 31px; padding: 6px; gap: 5px; font-size: 11px; }
+  #paint .paint-settings { gap: 12px; padding: 10px; }
+  #paint .paint-setting { width: calc(50% - 6px); }
+  #paint .paint-color-group { width: 100%; }
+  #paint .paint-workspace { padding: 10px; }
+  #paint .paint-tool .paint-icon { width: 17px; height: 17px; }
+  #paint .paint-tool > span { font-size: 10px; overflow-wrap: anywhere; }
+}
+@media (max-width: 560px) { #paint { width: calc(100% - 24px); } }

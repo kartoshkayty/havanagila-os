@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#214fde">
+<title>HavanagilaOS — ваш рабочий стол</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23214fde'/%3E%3Ctext x='32' y='46' text-anchor='middle' font-size='47' fill='white'%3E✡%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="desktop-icons.css">
+<link rel="stylesheet" href="effects.css">
+<link rel="stylesheet" href="notes-reaction.css">
+<link rel="stylesheet" href="paint.css">
+<link rel="stylesheet" href="jump.css">
+<link rel="stylesheet" href="dash.css">
+<link rel="stylesheet" href="cursor.css">
+<script src="music.js" defer></script>
+<script src="desktop-icons.js" defer></script>
+<script src="notes-reaction.js" defer></script>
+<script src="paint.js" defer></script>
+<script src="jump.js" defer></script>
+<script src="dash-audio.js" defer></script>
+<script src="dash.js" defer></script>
+<script src="app.js" defer></script>
+</head>
+<body>
+<svg class="svg-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+<symbol id="star" viewBox="0 0 100 100"><path d="M50 8 87 72H13ZM50 92 13 28H87Z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/></symbol>
+<symbol id="calc-icon" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M8 6h8M8 11h1m6 0h1m-8 4h1m6 0h1m-8 4h1m6 0h1"/></symbol>
+<symbol id="note-icon" viewBox="0 0 24 24"><path d="M14 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-9M9 15l1-4L19 2l3 3-9 9-4 1Z"/></symbol>
+<symbol id="folder-icon" viewBox="0 0 24 24"><path d="M2 7V5a2 2 0 0 1 2-2h5l3 3h8a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7Z"/><path d="M2 9h20"/></symbol>
+<symbol id="settings-icon" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/><circle cx="8" cy="5" r="2"/><circle cx="16" cy="12" r="2"/><circle cx="10" cy="19" r="2"/></symbol>
+<symbol id="trash-icon" viewBox="0 0 24 24"><path d="M3 6h18M5 6l1 15h12l1-15M9 6V3h6v3M9 10v7m6-7v7"/></symbol>
+<symbol id="paint-icon" viewBox="0 0 24 24"><path d="m14 3 7 7-7 7-7-7 7-7Z M4 13l7 7 M3 14l7 7-8 1 1-8Z M16 5l3-3 3 3-3 3"/></symbol>
+<symbol id="jump-icon" viewBox="0 0 24 24"><path d="M2 21h8m4-6h8M5 13l4-5 5 2 4-5M9 8l1 7-4 3m4-3 6 3"/><circle cx="11" cy="4" r="2"/></symbol>
+<symbol id="dash-icon" viewBox="0 0 24 24"><path d="M3 17h18M2 21h20M5 3h12v12H5Z M11 5l3 5H8Zm0 8L8 8h6Z M20 5h2m-2 4h2"/></symbol>
+<symbol id="grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+<symbol id="music-icon" viewBox="0 0 24 24"><path d="M9 18V5l12-3v13M9 8l12-3"/><ellipse cx="5.5" cy="18" rx="3.5" ry="3"/><ellipse cx="17.5" cy="15" rx="3.5" ry="3"/></symbol>
+<symbol id="play-icon" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7Z"/></symbol>
+<symbol id="pause-icon" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14" stroke-width="4"/></symbol>
+<symbol id="volume-icon" viewBox="0 0 24 24"><path d="M11 4 5 9H2v6h3l6 5ZM15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></symbol>
+<symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+</defs></svg>
+<div class="wallpaper" aria-hidden="true"><div class="flag-stripe stripe-top"></div><svg class="flag-star" aria-hidden="true"><use href="#star"/></svg><div class="flag-stripe stripe-bottom"></div><div class="wallpaper-grain"></div></div>
+<div class="system-aura" aria-hidden="true"></div>
+<div class="reaction-tint" aria-hidden="true"></div>
+<div id="notes-reaction" class="notes-reaction" hidden><div class="reaction-portrait-mask" aria-hidden="true"><img class="reaction-portrait" src="assets/netanyahu.jpg" alt="" width="500" height="728"></div><div class="reaction-speech" aria-hidden="true"><strong>Биби<br>не согласен!</strong><small>ШУТОЧНАЯ РЕАКЦИЯ</small></div><span class="reaction-burst" aria-hidden="true">БАМ!</span><span class="reaction-sr-only" role="status" aria-live="polite"></span></div>
+<header class="menubar">
+<button class="brand" data-open="about"><svg class="brand-mark" aria-hidden="true"><use href="#star"/></svg><span>Havanagila<span class="brand-os">OS</span></span><span class="version">2.5</span></button>
+<span class="menubar-divider"></span><span id="active-app-name">Рабочий стол</span>
+<div class="menu-right"><span class="connection"><i></i> Локально. Всё ваше.</span><span class="language">RU</span><time id="clock">--:--</time></div>
+</header>
+<main id="desktop" class="desktop has-paint" aria-label="Рабочий стол HavanagilaOS">
+<div class="desktop-icons" aria-label="Приложения рабочего стола">
+<button class="desktop-icon" data-app="files" aria-label="Этот компьютер: открыть двойным щелчком или Enter"><span class="app-icon blue"><svg class="icon" aria-hidden="true"><use href="#folder-icon"/></svg><span class="shortcut-mark">↗</span></span><span class="icon-label">Этот компьютер</span></button>
+<button class="desktop-icon" data-app="calculator" aria-label="Калькулятор: открыть двойным щелчком или Enter"><span class="app-icon cobalt"><svg class="icon" aria-hidden="true"><use href="#calc-icon"/></svg><span class="shortcut-mark">↗</span></span><span class="icon-label">Калькулятор</span></button>
+<button class="desktop-icon" data-app="notes" aria-label="Заметки: открыть двойным щелчком или Enter"><span class="app-icon amber"><svg class="icon" aria-hidden="true"><use href="#note-icon"/></svg><span class="shortcut-mark">↗</span></span><span class="icon-label">Заметки</span></button>
+<button class="desktop-icon" data-app="paint" aria-label="Paint: открыть двойным щелчком или Enter"><span class="app-icon mint"><svg class="icon" aria-hidden="true"><use href="#paint-icon"/></svg><span class="shortcut-mark">↗</span></span><span class="icon-label">Paint</span></button>
+<button class="desktop-icon" data-app="settings" aria-label="Оформление: открыть двойным щелчком или Enter"><span class="app-icon violet"><svg class="icon" aria-hidden="true"><use href="#settings-icon"/></svg><span class="shortcut-mark">↗</span></span><span class="icon-label">Оформление</span></button>
+<button class="desktop-icon" data-app="about" aria-label="О системе: открыть двойным щелчком или Enter"><span class="app-icon ice"><svg class="icon" aria-hidden="true"><use href="#star"/></svg><span class="shortcut-mark">↗</span></span><span class="icon-label">О системе</span></button>
+<button class="desktop-icon" data-app="trash" aria-label="Корзина: открыть двойным щелчком или Enter"><span class="app-icon silver"><svg class="icon" aria-hidden="true"><use href="#trash-icon"/></svg><span class="shortcut-mark">↗</span></span><span class="icon-label">Корзина</span></button>
+<button class="desktop-icon" data-app="jump" aria-label="Bibi Jump: открыть двойным щелчком или Enter"><span class="app-icon citrus"><svg class="icon" aria-hidden="true"><use href="#jump-icon"/></svg><span class="shortcut-mark">↗</span></span><span class="icon-label">Bibi Jump</span></button>
+<button class="desktop-icon" data-app="dash" aria-label="Havana Dash: открыть двойным щелчком или Enter"><span class="app-icon sunset"><svg class="icon" aria-hidden="true"><use href="#dash-icon"/></svg><span class="shortcut-mark">↗</span></span><span class="icon-label">Havana Dash</span></button>
+</div>
+<div class="desktop-watermark" aria-hidden="true"><div class="watermark-kicker">SHALOM, WORLD.</div><div class="watermark-title">Havanagila<span>OS</span><span class="watermark-dot">.</span></div><div class="watermark-caption">Ваш рабочий стол. Ваш ритм.</div></div>
+<aside class="clock-widget" aria-label="Дата и время"><span id="widget-weekday">Шалом!</span><time id="widget-clock">--:--</time><span id="widget-date"></span><span class="widget-line"></span><span class="widget-caption">Хороший день для хороших идей.</span></aside>
+<aside id="welcome-card" class="welcome-card"><button id="dismiss-welcome" aria-label="Скрыть приветствие">×</button><div class="welcome-icon">♫</div><span class="eyebrow">НЕОЖИДАННО ХОРОШАЯ МАТЕМАТИКА</span><h1>А теперь — с музыкой.</h1><p>Откройте калькулятор.<br>Биби уже готов к танцам.</p><button class="welcome-launch" data-open="calculator">Посчитать с настроением <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></button><small>Зазвучит «Хава Нагила» · громкость можно изменить</small></aside>
+<div class="desktop-hint"><span class="desktop-dot"></span><span class="desktop-instructions">Тяните иконки · Рамка — выделить · Ctrl — добавить</span></div>
+<div class="build-label">HAVANAGILA OS <span>PERSONAL EDITION / 02</span></div>
+<section id="calculator" class="app-window calculator" role="dialog" aria-modal="false" aria-labelledby="calculator-title" tabindex="-1" hidden>
+<div class="window-titlebar" data-drag><div class="window-title"><svg class="icon" aria-hidden="true"><use href="#calc-icon"/></svg><span id="calculator-title">Калькулятор</span><span class="title-badge">BIBI EDITION</span></div><div class="window-controls"><button data-window-action="minimize" aria-label="Свернуть">−</button><button data-window-action="maximize" aria-label="Развернуть">□</button><button data-window-action="close" aria-label="Закрыть">×</button></div></div>
+<div class="window-body calculator-content">
+<div class="dance-stage" id="dance-stage"><div class="stage-orbit orbit-one"></div><div class="stage-orbit orbit-two"></div><div class="stage-grid"></div>
+<span class="stage-badge"><i></i> <span id="stage-status">BIBI DANCE CLUB</span></span><div class="stage-caption"><span>Считаем.<br>Танцуем.</span><small>Математика с чувством ритма.</small></div>
+<div id="dancer" class="dancer" role="img" aria-label="Анимированный портрет Нетаньяху танцует в такт музыке"><img class="dancer-body" src="assets/netanyahu.jpg" alt="" width="500" height="728"><img id="dancer-head" class="dancer-head" src="assets/netanyahu.jpg" alt="" width="500" height="728"></div>
+<span class="floating-note note-one" aria-hidden="true">♪</span><span class="floating-note note-two" aria-hidden="true">♫</span><div class="equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+</div>
+<div class="music-strip"><button id="music-toggle" class="music-toggle" aria-label="Включить Хава Нагила" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#play-icon"/></svg></button><div class="track-meta"><strong>Hava Nagila</strong><span id="music-status">Синтез-версия · готова к запуску</span></div><span class="bpm-tag" id="bpm-label">132 BPM</span><label class="volume-control" title="Громкость"><svg class="icon" aria-hidden="true"><use href="#volume-icon"/></svg><input id="volume" type="range" min="0" max="100" value="35" aria-label="Громкость музыки"></label></div>
+<div class="calc-body"><div class="calc-screen"><div id="expression" class="calc-expression">Готов к вычислениям</div><output id="display" aria-live="polite" aria-atomic="true">0</output></div>
+<div class="calc-keys" aria-label="Клавиши калькулятора">
+<button class="key utility" data-key="clear" aria-label="Сбросить">AC</button>
+<button class="key utility" data-key="sign" aria-label="Сменить знак">±</button>
+<button class="key utility" data-key="percent" aria-label="Процент">%</button>
+<button class="key operator" data-key="/" aria-label="Разделить">÷</button>
+<button class="key " data-key="7" aria-label="7">7</button>
+<button class="key " data-key="8" aria-label="8">8</button>
+<button class="key " data-key="9" aria-label="9">9</button>
+<button class="key operator" data-key="*" aria-label="Умножить">×</button>
+<button class="key " data-key="4" aria-label="4">4</button>
+<button class="key " data-key="5" aria-label="5">5</button>
+<button class="key " data-key="6" aria-label="6">6</button>
+<button class="key operator" data-key="-" aria-label="Вычесть">−</button>
+<button class="key " data-key="1" aria-label="1">1</button>
+<button class="key " data-key="2" aria-label="2">2</button>
+<button class="key " data-key="3" aria-label="3">3</button>
+<button class="key operator" data-key="+" aria-label="Сложить">+</button>
+<button class="key " data-key="backspace" aria-label="Удалить цифру">⌫</button>
+<button class="key " data-key="0" aria-label="0">0</button>
+<button class="key " data-key="." aria-label="Десятичный разделитель">,</button>
+<button class="key equals" data-key="=" aria-label="Равно">=</button>
+</div><div class="calc-footer"><span><i></i> ТОЧНО В ТАКТ</span><button id="dance-toggle" aria-pressed="true">Танец: вкл.</button><span>↵ Enter</span></div></div>
+</div></section>
+<section id="notes" class="app-window" role="dialog" aria-modal="false" aria-labelledby="notes-title" tabindex="-1" hidden><div class="window-titlebar" data-drag><div class="window-title"><svg class="icon" aria-hidden="true"><use href="#note-icon"/></svg><span id="notes-title">Заметки</span></div><div class="window-controls"><button data-window-action="minimize" aria-label="Свернуть">−</button><button data-window-action="maximize" aria-label="Развернуть">□</button><button data-window-action="close" aria-label="Закрыть">×</button></div></div><div class="window-body notes-content"><div class="notes-toolbar"><span class="eyebrow">МОЯ ЗАМЕТКА.TXT</span><div><button id="export-notes" class="small-button">Скачать .txt</button><button id="trash-notes" class="icon-button" aria-label="Переместить заметку в корзину"><svg class="icon" aria-hidden="true"><use href="#trash-icon"/></svg></button></div></div><h2>Не забудьте хорошее.</h2><textarea id="notes-text" aria-label="Текст заметки" placeholder="Идея, список дел или рецепт идеального хумуса…" maxlength="20000"></textarea><div class="notes-status"><span id="save-status">Сохраняется автоматически</span><span id="char-count">0 символов</span></div></div></section>
+<section id="paint" class="app-window paint-window" role="dialog" aria-modal="false" aria-labelledby="paint-title" tabindex="-1" hidden>
+<div class="window-titlebar" data-drag><div class="window-title"><svg class="icon" aria-hidden="true"><use href="#paint-icon"/></svg><span id="paint-title">Paint</span><span class="title-badge">HAVANA STUDIO</span></div><div class="window-controls"><button data-window-action="minimize" aria-label="Свернуть">−</button><button data-window-action="maximize" aria-label="Развернуть">□</button><button data-window-action="close" aria-label="Закрыть">×</button></div></div>
+<div class="window-body"></div>
+</section>
+<section id="files" class="app-window files-window" role="dialog" aria-modal="false" aria-labelledby="files-title" tabindex="-1" hidden><div class="window-titlebar" data-drag><div class="window-title"><svg class="icon" aria-hidden="true"><use href="#folder-icon"/></svg><span id="files-title">Этот компьютер</span></div><div class="window-controls"><button data-window-action="minimize" aria-label="Свернуть">−</button><button data-window-action="maximize" aria-label="Развернуть">□</button><button data-window-action="close" aria-label="Закрыть">×</button></div></div><div class="window-body"><div class="file-location"><svg class="icon" aria-hidden="true"><use href="#folder-icon"/></svg><span>Этот компьютер</span><span>›</span><strong>Личное</strong></div><div class="files-layout"><aside class="files-sidebar"><span class="selected">⌂ Личное</span><button data-open="trash">Корзина</button><button data-open="settings">Настройки</button></aside><div class="file-list"><button data-open="dash"><svg class="icon" aria-hidden="true"><use href="#dash-icon"/></svg><span><strong>Havana Dash</strong><small>Ритм-платформер · два музыкальных уровня</small></span><span>↗</span></button><button data-open="jump"><svg class="icon" aria-hidden="true"><use href="#jump-icon"/></svg><span><strong>Bibi Jump</strong><small>Игра · прыгайте всё выше</small></span><span>↗</span></button><button data-open="paint"><svg class="icon" aria-hidden="true"><use href="#paint-icon"/></svg><span><strong>Новый рисунок</strong><small>Открыть Paint · холст 960 × 600</small></span><span>↗</span></button><button data-open="notes"><svg class="icon" aria-hidden="true"><use href="#note-icon"/></svg><span><strong>Моя заметка.txt</strong><small id="file-size">Текстовый документ</small></span><span>↗</span></button><button data-open="about"><svg class="icon" aria-hidden="true"><use href="#star"/></svg><span><strong>Прочти меня</strong><small>О системе и управлении</small></span><span>↗</span></button><button data-open="settings"><svg class="icon" aria-hidden="true"><use href="#settings-icon"/></svg><span><strong>Мой рабочий стол</strong><small>Обои, музыка, анимация</small></span><span>↗</span></button></div></div><div class="files-footer">Виртуальные файлы этого сайта. Доступа к файлам устройства нет.</div></div></section>
+<section id="settings" class="app-window" role="dialog" aria-modal="false" aria-labelledby="settings-title" tabindex="-1" hidden><div class="window-titlebar" data-drag><div class="window-title"><svg class="icon" aria-hidden="true"><use href="#settings-icon"/></svg><span id="settings-title">Оформление и звук</span></div><div class="window-controls"><button data-window-action="minimize" aria-label="Свернуть">−</button><button data-window-action="maximize" aria-label="Развернуть">□</button><button data-window-action="close" aria-label="Закрыть">×</button></div></div><div class="window-body settings-content"><span class="eyebrow">СДЕЛАЙТЕ ПО-СВОЕМУ</span><h2>Ваше настроение.</h2><label class="setting-label">Оформление рабочего стола</label><div class="theme-options"><button data-theme="day" class="theme-option" aria-pressed="true"><span class="theme-preview day-preview">✡</span><strong>Голубой час</strong></button><button data-theme="evening" class="theme-option" aria-pressed="false"><span class="theme-preview night-preview">✡</span><strong>Синий вечер</strong></button></div><div class="setting-row"><div><strong>Танец Нетаньяху</strong><small>Движения синхронизированы с музыкой</small></div><input id="dance-setting" type="checkbox" role="switch" checked aria-label="Анимация танца"></div><div class="setting-row"><div><strong>Подсветка системы в такт</strong><small id="beat-setting-hint">Мягкое свечение обоев, окон и иконок</small></div><input id="beat-setting" type="checkbox" role="switch" checked aria-label="Подсветка системы в такт музыке"></div><div class="setting-row"><div><strong>Реакция в заметках</strong><small>Шуточная пасхалка — текст не меняется</small></div><input id="notes-reaction-setting" type="checkbox" role="switch" checked aria-label="Шуточная реакция в заметках"></div><div class="setting-row volume-setting"><div><strong>Громкость музыки</strong><small id="volume-label">35%</small></div><input id="settings-volume" type="range" min="0" max="100" value="35" aria-label="Громкость в настройках"></div><p class="settings-tip">Музыка включается при открытии калькулятора. При сворачивании и закрытии — останавливается. Пауза доступна и на панели задач.</p><div class="reset-actions"><button id="reset-windows" class="small-button">Вернуть окна в центр</button><button id="reset-icons" class="small-button">Расставить иконки</button></div></div></section>
+<section id="about" class="app-window" role="dialog" aria-modal="false" aria-labelledby="about-title" tabindex="-1" hidden><div class="window-titlebar" data-drag><div class="window-title"><svg class="icon" aria-hidden="true"><use href="#star"/></svg><span id="about-title">О HavanagilaOS</span></div><div class="window-controls"><button data-window-action="minimize" aria-label="Свернуть">−</button><button data-window-action="maximize" aria-label="Развернуть">□</button><button data-window-action="close" aria-label="Закрыть">×</button></div></div><div class="window-body about-content"><svg class="about-logo" aria-hidden="true"><use href="#star"/></svg><span class="eyebrow">PERSONAL EDITION · VERSION 2.5</span><h2>HavanagilaOS<span>.</span></h2><p>Рабочий стол с характером. Открывайте приложения, двигайте окна и считайте под «Хава Нагила».</p><div class="system-spec"><span>Открыть приложение</span><strong>Двойной клик / Enter</strong><span>Переместить окно</span><strong>Потянуть за заголовок</strong><span>Переместить иконки</span><strong>Потянуть иконку или группу</strong><span>Выделить несколько</span><strong>Рамка / Ctrl / Shift</strong><span>Убрать все окна</span><strong>Кнопка справа внизу</strong><span>Музыка</span><strong>Локальный Web Audio синтез</strong></div><p class="disclaimer">Это веб-имитация рабочего стола, а не настоящая ОС. Шуточная анимация портрета, не реальная видеозапись. Неофициальный проект, не связанный с изображённым политиком.</p><a class="credits" href="https://commons.wikimedia.org/wiki/File:Benjamin_Netanyahu,_February_2023.jpg" target="_blank" rel="noopener noreferrer">Фото: Avi Ohayon / GPO · Wikimedia Commons ↗</a><a class="credits" href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0 · кадрирование и анимация на той же лицензии</a></div></section>
+<section id="trash" class="app-window" role="dialog" aria-modal="false" aria-labelledby="trash-title" tabindex="-1" hidden><div class="window-titlebar" data-drag><div class="window-title"><svg class="icon" aria-hidden="true"><use href="#trash-icon"/></svg><span id="trash-title">Корзина</span></div><div class="window-controls"><button data-window-action="minimize" aria-label="Свернуть">−</button><button data-window-action="maximize" aria-label="Развернуть">□</button><button data-window-action="close" aria-label="Закрыть">×</button></div></div><div class="window-body trash-content"><svg class="trash-illustration" aria-hidden="true"><use href="#trash-icon"/></svg><h2 id="trash-heading">Здесь пока чисто.</h2><p id="trash-description">Удалённая заметка появится здесь.<br>Её можно будет восстановить.</p><div class="trash-actions"><button id="restore-notes" class="primary-button" disabled>Восстановить заметку</button><button id="empty-trash" class="small-button" disabled>Очистить корзину</button></div></div></section>
+<section id="jump" class="app-window jump-window" role="dialog" aria-modal="false" aria-labelledby="jump-title" tabindex="-1" hidden>
+<div class="window-titlebar" data-drag><div class="window-title"><svg class="icon" aria-hidden="true"><use href="#jump-icon"/></svg><span id="jump-title">Bibi Jump</span><span class="title-badge">ВЫШЕ — ЛУЧШЕ</span></div><div class="window-controls"><button data-window-action="minimize" aria-label="Свернуть">−</button><button data-window-action="maximize" aria-label="Развернуть">□</button><button data-window-action="close" aria-label="Закрыть">×</button></div></div>
+<div class="window-body"></div>
+</section>
+<section id="dash" class="app-window dash-window" role="dialog" aria-modal="false" aria-labelledby="dash-title" tabindex="-1" hidden>
+<div class="window-titlebar" data-drag><div class="window-title"><svg class="icon" aria-hidden="true"><use href="#dash-icon"/></svg><span id="dash-title">Havana Dash</span><span class="title-badge">RHYTHM RUNNER</span></div><div class="window-controls"><button data-window-action="minimize" aria-label="Свернуть">−</button><button data-window-action="maximize" aria-label="Развернуть">□</button><button data-window-action="close" aria-label="Закрыть">×</button></div></div>
+<div class="window-body"></div>
+</section>
+</main>
+<div id="launcher" class="launcher" hidden><div class="launcher-user"><span class="user-avatar">S</span><div><strong>Shalom, пользователь</strong><small>Всё начинается с хорошего настроения.</small></div></div><div class="launcher-heading">Приложения <span>09</span></div><div class="launcher-apps"><button data-open="files"><span class="mini-app blue"><svg class="icon" aria-hidden="true"><use href="#folder-icon"/></svg></span><span>Этот компьютер</span></button>
+<button data-open="calculator"><span class="mini-app cobalt"><svg class="icon" aria-hidden="true"><use href="#calc-icon"/></svg></span><span>Калькулятор</span></button>
+<button data-open="notes"><span class="mini-app amber"><svg class="icon" aria-hidden="true"><use href="#note-icon"/></svg></span><span>Заметки</span></button>
+<button data-open="paint"><span class="mini-app mint"><svg class="icon" aria-hidden="true"><use href="#paint-icon"/></svg></span><span>Paint</span></button>
+<button data-open="jump"><span class="mini-app citrus"><svg class="icon" aria-hidden="true"><use href="#jump-icon"/></svg></span><span>Bibi Jump</span></button>
+<button data-open="dash"><span class="mini-app sunset"><svg class="icon" aria-hidden="true"><use href="#dash-icon"/></svg></span><span>Havana Dash</span></button>
+<button data-open="settings"><span class="mini-app violet"><svg class="icon" aria-hidden="true"><use href="#settings-icon"/></svg></span><span>Оформление</span></button>
+<button data-open="about"><span class="mini-app ice"><svg class="icon" aria-hidden="true"><use href="#star"/></svg></span><span>О системе</span></button>
+<button data-open="trash"><span class="mini-app silver"><svg class="icon" aria-hidden="true"><use href="#trash-icon"/></svg></span><span>Корзина</span></button></div><div class="launcher-bottom"><i></i> Локально · без установки и интернета<button id="launcher-desktop">На рабочий стол ↗</button></div></div>
+<footer class="taskbar"><button id="start-button" class="start-button" aria-label="Открыть приложения" aria-controls="launcher" aria-expanded="false"><svg class="icon" aria-hidden="true"><use href="#grid"/></svg><span>Шалом</span></button><span class="dock-divider"></span>
+<button class="dock-app" data-dock="files" aria-label="Этот компьютер" title="Этот компьютер"><svg class="icon" aria-hidden="true"><use href="#folder-icon"/></svg></button>
+<button class="dock-app" data-dock="calculator" aria-label="Калькулятор" title="Калькулятор"><svg class="icon" aria-hidden="true"><use href="#calc-icon"/></svg></button>
+<button class="dock-app" data-dock="notes" aria-label="Заметки" title="Заметки"><svg class="icon" aria-hidden="true"><use href="#note-icon"/></svg></button>
+<button class="dock-app" data-dock="settings" aria-label="Оформление" title="Оформление"><svg class="icon" aria-hidden="true"><use href="#settings-icon"/></svg></button>
+<div id="extra-tasks" class="extra-tasks"></div><div class="taskbar-spacer"></div><button id="taskbar-music" class="taskbar-music" aria-label="Открыть калькулятор с музыкой"><span class="mini-equalizer" aria-hidden="true"><i></i><i></i><i></i></span><span id="taskbar-track">Время для музыки</span><span id="taskbar-play">▶</span></button><span class="tray-status"><i></i> Всё — шалом</span><button id="show-desktop" class="show-desktop" title="Показать или вернуть окна" aria-label="Показать или вернуть окна"></button></footer>
+<div id="context-menu" class="context-menu" hidden><button data-open="settings">Оформление рабочего стола</button><button id="context-arrange">Окна по центру</button><button id="context-icons">Расставить иконки</button><button id="context-hide">Показать рабочий стол</button></div>
+<div id="toast" class="toast" role="status"></div>
+</body>
+</html>

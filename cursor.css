@@ -1,0 +1,17 @@
+/* Native SVG cursor: 32 × 36 px, click hotspot at the arrow tip (2, 2).
+   Embedded data URL keeps the single-file build fully offline. */
+:root { --havana-cursor: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2236%22%20viewBox%3D%220%200%2040%2044%22%3E%3Cpath%20d%3D%22M3%202%2034%2027%2021%2026%2027%2039%2020%2042%2013%2028%204%2036Z%22%20fill%3D%22%232860e5%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%223.2%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M3%202%2034%2027%2021%2026%2027%2039%2020%2042%2013%2028%204%2036Z%22%20fill%3D%22%232860e5%22%20stroke%3D%22%23123b9c%22%20stroke-width%3D%221%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M12.5%2011.3%2018.1%2021H6.9ZM12.5%2024.3%206.9%2014.6H18.1Z%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%221.45%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E"); }
+@media (any-pointer: fine) {
+  html, body, body * { cursor:var(--havana-cursor) 2 2, default !important; }
+  button, a, [role="button"], label, select, input[type="range"], input[type="color"], input[type="checkbox"] { cursor:var(--havana-cursor) 2 2, pointer !important; }
+  /* Keep precision editing and drawing cursors in their specialized tools. */
+  textarea, input[type="text"], input[type="search"], input[type="number"], [contenteditable="true"] { cursor:text !important; }
+  #paint-canvas { cursor:crosshair !important; }
+  #paint-canvas[data-tool="eraser"] { cursor:cell !important; }
+  button:disabled, input:disabled, select:disabled { cursor:not-allowed !important; }
+}
+@media (forced-colors: active) {
+  html, body, body * { cursor:auto !important; }
+  textarea { cursor:text !important; }
+  #paint-canvas { cursor:crosshair !important; }
+}

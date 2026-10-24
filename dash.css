@@ -1,0 +1,105 @@
+/* Scoped, original Havana Dash interface. The desktop owns the titlebar. */
+#dash.app-window{width:900px;height:650px;max-width:calc(100vw - 30px);max-height:calc(100vh - var(--top,47px) - var(--bottom,65px) - 18px)}
+#dash .window-body{height:calc(100% - 40px);min-height:0;padding:0;overflow:hidden;background:#101c32}
+#dash .dash-shell{overflow-y:auto;--dash-accent:#8de3ff;--dash-line:#2a3d5c;display:flex;flex-direction:column;width:100%;height:100%;min-height:0;padding:16px;gap:11px;color:#e7efff;background:linear-gradient(140deg,#152541,#0c172a);font-family:Arial,Helvetica,sans-serif}
+#dash .dash-shell[data-theme=amber]{--dash-accent:#ffcf8b;--dash-line:#504052;background:linear-gradient(140deg,#30233c,#15192a)}
+#dash .dash-toolbar{display:flex;align-items:center;justify-content:space-between;gap:18px;flex:none}
+#dash .dash-brand{display:flex;align-items:center;gap:10px;flex:none}
+#dash .dash-brand-mark{display:grid;place-items:center;width:36px;height:36px;border:1px solid var(--dash-accent);border-radius:9px;color:var(--dash-accent);font-size:34px;line-height:1;transform:rotate(-9deg)}
+#dash .dash-brand strong{display:block;font-size:19px;letter-spacing:1.7px;color:#fff;line-height:1.15}
+#dash .dash-brand b{color:var(--dash-accent)}
+#dash .dash-brand small{display:block;margin-top:5px;font-size:10px;color:#9baecb;letter-spacing:.15px}
+#dash .dash-level-label{display:flex;flex-direction:column;gap:4px;min-width:0;color:#a5b8d4;font-size:10px;letter-spacing:.4px}
+#dash #dash-level{width:225px;max-width:100%;height:32px;padding:0 9px;border:1px solid var(--dash-line);border-radius:7px;background:#101d34;color:#e7efff;font:12px Arial;cursor:pointer;color-scheme:dark}
+#dash .dash-settings{display:flex;align-items:center;gap:15px;min-width:0;flex:none}
+#dash .dash-skins{display:flex;gap:6px;flex:none}
+#dash [data-dash-skin]{display:flex;align-items:center;gap:5px;padding:2px 9px 2px 3px;height:43px;border:1px solid var(--dash-line);border-radius:8px;background:#152139;color:#9aacc8;font-size:11px}
+#dash [data-dash-skin] canvas{display:block;width:34px;height:34px}
+#dash [data-dash-skin][aria-pressed=true]{border-color:var(--dash-accent);background:#243a53;color:#fff;box-shadow:inset 0 0 0 1px #8de3ff1a}
+#dash .dash-audio{display:flex;align-items:center;gap:8px;margin-left:auto;min-width:0}
+#dash #dash-mute{background:#1c2d46;color:#c8d8f0;border:1px solid var(--dash-line);border-radius:6px;font-size:10px;padding:7px;width:46px}
+#dash #dash-volume{width:85px;height:24px;min-width:50px;margin:0;accent-color:var(--dash-accent);cursor:pointer}
+#dash .dash-tempo{font-size:10px;color:#9bafcc;white-space:nowrap;font-variant-numeric:tabular-nums}
+#dash .dash-status{display:flex;align-items:center;gap:12px;flex:none;height:18px}
+#dash #dash-progress{position:relative;display:block;flex:1;height:18px;border:1px solid var(--dash-line);border-radius:5px;overflow:hidden;background:#080f20;min-width:40px}
+#dash #dash-progress i{position:absolute;inset:0 auto 0 0;width:0;height:auto;border-radius:0;background:#285d80;transition:none}
+#dash [data-theme=amber] #dash-progress i{background:#6e4c30}
+#dash #dash-progress b{position:absolute;inset:0;display:grid;place-items:center;font-size:10px;font-weight:500;color:#f3f8ff;font-variant-numeric:tabular-nums}
+#dash #dash-best{font-size:11px;color:var(--dash-accent);white-space:nowrap;min-width:75px;text-align:right}
+#dash .dash-stage{position:relative;display:flex;align-items:center;justify-content:center;flex:1 1 0;min-height:120px;min-width:0;overflow:hidden;border:1px solid var(--dash-line);border-radius:10px;background:#080e20;isolation:isolate}
+#dash #dash-canvas{display:block;width:100%;height:100%;min-width:0;min-height:0;object-fit:contain;touch-action:none;outline-offset:-4px;border-radius:9px}
+#dash #dash-overlay{position:absolute;left:50%;top:43%;transform:translate(-50%,-50%);width:min(370px,88%);padding:19px 21px;text-align:center;border:1px solid #7796c550;border-radius:12px;background:#0c182bef;box-shadow:0 8px 28px #0003;pointer-events:none}
+#dash .dash-overlay-kicker{font-size:9px;color:var(--dash-accent);font-weight:700;letter-spacing:1.6px}
+#dash #dash-overlay h2{margin:8px 0;font-size:28px;line-height:1.08;letter-spacing:-.8px;color:#fff}
+#dash #dash-overlay p{margin:0;font-size:12px;line-height:1.5;color:#d2def1}
+#dash #dash-overlay small{display:block;margin-top:10px;font-size:10px;line-height:1.4;color:#95aaca}
+#dash [data-state=dead] #dash-overlay{border-color:#b895675e}
+#dash [data-state=won] #dash-overlay{border-color:var(--dash-accent)}
+#dash .dash-footer{display:flex;flex-direction:column;gap:9px;flex:none}
+#dash .dash-actions{display:flex;align-items:center;gap:8px}
+#dash .dash-actions button{height:36px;padding:0 14px;border:1px solid var(--dash-line);border-radius:7px;background:#1d2d47;color:#d0ddf2;font-size:12px;white-space:nowrap}
+#dash .dash-actions button:disabled{opacity:.4}
+#dash #dash-start{min-width:126px;background:#bcefff;color:#0c2542;border-color:#bcefff;font-weight:700}
+#dash [data-theme=amber] #dash-start{background:#ffcf8b;border-color:#ffcf8b;color:#382614}
+#dash #dash-jump{margin-left:auto;min-width:105px;border-color:#617a9c;color:var(--dash-accent);background:#233853;touch-action:none;font-weight:700;user-select:none;-webkit-user-select:none}
+#dash .dash-footnote{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:9px;line-height:1.4;color:#8ba0bf;min-height:13px}
+#dash .dash-footnote>span:first-child{white-space:nowrap;letter-spacing:.35px}
+#dash .dash-audio-state{text-align:right;max-width:65%}
+#dash button:hover:not(:disabled){filter:brightness(1.12)}
+#dash button:focus-visible,#dash select:focus-visible,#dash input:focus-visible,#dash canvas:focus-visible{outline:2px solid var(--dash-accent);outline-offset:2px}
+@media(max-width:640px){
+ #dash.app-window{width:calc(100vw - 16px);max-width:calc(100vw - 16px)}
+ #dash .dash-shell{padding:10px;gap:8px}
+ #dash .dash-toolbar{gap:8px;align-items:stretch}
+ #dash .dash-brand{gap:7px}
+ #dash .dash-brand-mark{display:none}
+ #dash .dash-brand strong{font-size:15px;letter-spacing:.8px}
+ #dash .dash-brand small{font-size:8px;max-width:122px;line-height:1.4}
+ #dash .dash-level-label{font-size:8px;justify-content:center;max-width:55%}
+ #dash #dash-level{width:190px;font-size:10px;height:31px;padding:0 5px}
+ #dash .dash-settings{gap:7px;flex-wrap:wrap}
+ #dash [data-dash-skin]{height:39px;padding-right:6px;font-size:10px;gap:2px}
+ #dash [data-dash-skin] canvas{width:31px;height:31px}
+ #dash .dash-audio{gap:4px}
+ #dash #dash-volume{width:64px}
+ #dash .dash-tempo{display:none}
+ #dash .dash-actions{gap:5px;flex-wrap:wrap}
+ #dash .dash-actions button{height:38px;padding:0 9px;font-size:11px}
+ #dash #dash-start{min-width:100px;flex:1}
+ #dash #dash-jump{min-width:90px;margin-left:0}
+ #dash .dash-footnote{font-size:8px;gap:7px}
+ #dash #dash-overlay{padding:12px 13px;width:87%}
+ #dash #dash-overlay h2{font-size:24px;margin:6px 0}
+ #dash #dash-overlay p{font-size:11px}
+ #dash #dash-overlay small{font-size:9px;margin-top:7px}
+ #dash .dash-overlay-kicker{font-size:8px;letter-spacing:1px}
+}
+@media(max-width:380px){
+ #dash .dash-actions{display:grid;grid-template-columns:1.15fr .85fr}
+ #dash #dash-start,#dash #dash-jump{min-width:0;width:100%}
+ #dash #dash-pause{grid-column:2;grid-row:1}
+ #dash #dash-restart{grid-column:1;grid-row:2}
+ #dash #dash-jump{grid-column:2;grid-row:2}
+ #dash .dash-audio-state{max-width:57%}
+}
+@media(max-height:570px){
+ #dash .dash-shell{gap:4px;padding:5px}
+ #dash .dash-brand small{display:none}
+ #dash .dash-brand strong{font-size:15px}
+ #dash .dash-brand-mark{width:28px;height:28px;font-size:26px}
+ #dash .dash-level-label{font-size:0;gap:0}
+ #dash .dash-footnote{font-size:9px}
+ #dash .dash-status,#dash #dash-progress{height:14px}
+ #dash .dash-settings{height:35px}
+ #dash [data-dash-skin]{height:32px}
+ #dash [data-dash-skin] canvas{height:26px;width:26px}
+ #dash .dash-stage{min-height:64px}
+ #dash #dash-overlay{padding:7px 13px;top:50%;max-width:350px}
+ #dash #dash-overlay h2{font-size:20px;margin:4px 0}
+ #dash #dash-overlay small{display:none}
+ #dash .dash-overlay-kicker{display:none}
+ #dash #dash-overlay p{font-size:10px}
+ #dash .dash-actions button{height:31px}
+ #dash .dash-footnote{display:none}
+}
+@media(prefers-reduced-motion:reduce){#dash *,#dash *::before,#dash *::after{animation:none!important;transition:none!important}}
