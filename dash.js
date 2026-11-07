@@ -277,7 +277,11 @@
     }
     function update(s) {
       const level = getLevel(s.level), percent = Math.floor(s.progress);
-      shell.dataset.state = s.state; shell.dataset.theme = level.theme;
+
+      // Костыль
+      const isEvening = localStorage.getItem('havanagila-evening') === 'true';
+      shell.dataset.theme = isEvening ? 'evening' : (level.theme || 'default');
+
       shell.dataset.starting = String(starting); shell.setAttribute('aria-busy', String(starting));
       progressNode.setAttribute('aria-valuenow', String(percent));
       progressNode.querySelector('i').style.width = s.progress + '%';
